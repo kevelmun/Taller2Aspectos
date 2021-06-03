@@ -1,5 +1,6 @@
 package com.bank;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class Bank {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int opcion = 0;
         initBank();
         while(opcion != EXIT){
@@ -23,7 +24,7 @@ public class Bank {
         };
 
     }
-    public static int menu(){
+    public static int menu() throws IOException{
         System.out.println("Banco AspectJ");
         System.out.println("------------------------------------");
         System.out.println("1 - Crear usuario");
@@ -42,7 +43,7 @@ public class Bank {
         case 2:
             System.out.println("Realizar transaccion");
             System.out.println("------------------------------------");
-             moneyMakeTransaction(); 
+             moneyMakeTransaction();
         break;
         case 3:
             System.out.println("Retirar dinero");
@@ -76,12 +77,12 @@ public class Bank {
         users.add(new User(users.size(),nombre,id,money));
     }
 
-    public static void moneyMakeTransaction(){
+    public static void moneyMakeTransaction() throws IOException{
         int id = Integer.valueOf(readConsole("Key: "));
         double money = Double.valueOf(readConsole("Dinero a depositar: "));
         users.get(id-1).setMoney(users.get(id-1).getMoney() + money);
     }
-    public static void moneyWithdrawal(){
+    public static void moneyWithdrawal() throws IOException{
         int id = Integer.valueOf(readConsole("Key: "));
         double money = Double.valueOf(readConsole("Dinero a retirar: "));
         users.get(id-1).setMoney(users.get(id-1).getMoney() - money);
